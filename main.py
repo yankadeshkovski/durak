@@ -43,14 +43,21 @@ def choose_master_suit(deck):
     deck.turn_suit_master(suit_name)
     return suit_name
 
-# what i need to work on
+def transfer_card(deck, vector):
+    ran_num = random.randrange(0, len(deck.deck))
+    vector.append(deck.deck[ran_num])
+    deck.card_remove(deck.deck[ran_num].card_suit, deck.deck[ran_num].card_value)
+
+    return vector
+
 def shuffle_deck(deck, master_suit):
     value_num = random.randrange(15, 27, 1)
     vctr = []
     vctr.append(deck.find_card(master_suit, value_num))
     deck.card_remove(master_suit, value_num)
 
-    print(vctr)
+    for i in range(51):
+        vctr = transfer_card(deck, vctr)
 
     return vctr
     
@@ -67,10 +74,10 @@ def main():
     # for i in range(len(deck.deck)):
     #     print(deck.deck[i].suit, deck.deck[i].rank, deck.deck[i].value)
 
-    vctr1 = shuffle_deck(deck, master_suit)
+    vctr = shuffle_deck(deck, master_suit)
 
-    # print(vctr1[0].suit, vctr1[0].rank, vctr1[0].value)
-
+    for i in range(len(vctr)):
+        print(vctr[i].suit, vctr[i].rank, vctr[i].value)
 
     running = True
     while running:

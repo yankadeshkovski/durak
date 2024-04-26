@@ -30,7 +30,7 @@ class Deck:
     # for some reason doesn't work               
     def card_remove(self, suit, value):
         for c in range(self.size):
-                if self.deck[c].value == value and self.deck[c].suit == suit:
-                    del self.deck[c]
-
-        self.size -= 1
+            if self.deck[c].value == value and self.deck[c].suit == suit:
+                del self.deck[c]
+                break
+        self.size -= 1           
