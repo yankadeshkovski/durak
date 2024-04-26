@@ -2,18 +2,20 @@ import pygame
 
 class Button:
 
-    def __init__(self, text, x_pos, y_pos, enabled, screen, font):
+    def __init__(self, text, x_pos, y_pos, enabled, screen, font, size1, size2):
         self.text = text
         self.x_pos = x_pos
         self.y_pos = y_pos
         self.enabled = enabled
         self.font = font
         self.screen = screen
+        self.size1 = size1
+        self.size2 = size2
         self.draw()
 
     def draw(self):
         button_text = self.font.render(self.text, True, 'black')
-        button_rect = pygame.rect.Rect((self.x_pos, self.y_pos), (150, 300))
+        button_rect = pygame.rect.Rect((self.x_pos, self.y_pos), (self.size1, self.size2))
         if self.check_click():
             pygame.draw.rect(self.screen, 'black', button_rect, 0, 5)
         else:
@@ -29,7 +31,7 @@ class Button:
     def check_click(self):
         mouse_pos = pygame.mouse.get_pos()
         left_click = pygame.mouse.get_pressed()[0]
-        button_rect = pygame.rect.Rect((self.x_pos, self.y_pos), (150, 300))
+        button_rect = pygame.rect.Rect((self.x_pos, self.y_pos), (self.size1, self.size2))
         if left_click and button_rect.collidepoint(mouse_pos) and self.enabled:
             return True
         else:
